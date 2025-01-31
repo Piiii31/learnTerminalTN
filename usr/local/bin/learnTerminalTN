@@ -1,0 +1,58 @@
+#!/bin/bash
+INSTALL_DIR="/usr/local/lib/learnTerminalTN"
+
+# Detect terminal emulator
+TERMINAL_EMULATOR=$(command -v gnome-terminal xterm konsole 2>/dev/null | head -n1)
+
+# Get the current working directory
+CURRENT_DIR=$(pwd)
+
+exec "$TERMINAL_EMULATOR" -- bash -c "
+    # Change to the user's current directory
+    cd '$CURRENT_DIR' || exit 1
+
+    # Load configuration and helper scripts
+    source '$INSTALL_DIR/config.sh'
+    source '$INSTALL_DIR/help.sh'
+    
+    # Display logo and description
+    clear
+    echo -e \"\${GREEN}\$(figlet -f slant 'Learn Terminal TN')\${NC}\"
+    echo -e \"\${CYAN}A terminal learning tool to help you master Linux commands.\${NC}\"
+    echo -e \"\${MAGENTA}Author: Piiii31\${NC}\"
+    echo -e \"Type \${YELLOW}help\${NC} to see available commands.\n\"
+    
+    # Keep terminal open on errors
+    trap 'echo -e \"\n\${RED}Session interrupted\${NC}\"; read -p \"Press Enter to close...\"' SIGINT
+    
+    while true; do
+        # Show current directory in prompt
+        read -e -p \"\${BLUE}LearnTerminalTN (\$(basename \$(pwd)))> \${NC}\" cmd
+        
+        case \"\$cmd\" in
+            exit|quit) exit 0 ;;
+            help) show_help ; continue ;;
+            \"\") continue ;;
+        esac
+        
+        # Split command into parts
+        read -ra cmd_parts <<< \"\$cmd\"
+        base_cmd=\"\${cmd_parts[0]}\"
+        args=\"\${cmd_parts[@]:1}\"
+        
+        # Translate and execute the command
+        if [[ -n \"\${COMMAND_MAP[\$base_cmd]}\" ]]; then
+            real_cmd=\"\${COMMAND_MAP[\$base_cmd]}\"
+            echo -e \"\${CYAN}Note: \${NC}'\$base_cmd' → '\$real_cmd' \${MAGENTA}(\$(get_explanation \"\$base_cmd\"))\${NC}\"
+            
+            # Execute with arguments
+            eval \"\$real_cmd \$args\"
+        else
+            # Handle native commands
+            eval \"\$cmd\"
+        fi
+    done
+    
+    # Keep terminal open after exit
+    read -p \"Press Enter to close the terminal...\"
+"

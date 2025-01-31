@@ -1,0 +1,9 @@
+Package: learnterminaltn
+Version: 1.0
+Section: utils
+Priority: optional
+Architecture: all
+Maintainer: Your Name o.abderrahmen314@gmail.com
+Description: A tool to help users learn terminal commands in a fun and interactive way.
+ LearnTerminalTN provides a simplified interface for common terminal commands,
+ making it easier for beginners to get started with the Linux command line.

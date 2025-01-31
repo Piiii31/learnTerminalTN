@@ -1,0 +1,5 @@
+#!/bin/bash
+# Set permissions for the installed files
+chmod 755 /usr/local/bin/learnTerminalTN
+chmod 755 /usr/local/lib/learnTerminalTN/translation.sh
+chmod 644 /usr/local/lib/learnTerminalTN/config.sh /usr/local/lib/learnTerminalTN/help.sh
