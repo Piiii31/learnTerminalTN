@@ -1,7 +1,7 @@
 # Learn Terminal TN
 
-[![GitHub License](https://img.shields.io/github/license/abdou-othman/learn-terminal-tn)](LICENSE)
-[![Debian Package](https://img.shields.io/badge/deb-package-blue)](releases/learnterminaltn.deb)
+[![GitHub License](https://img.shields.io/github/license/Piiii31/learnTerminalTN)](LICENSE)
+[![Debian Package](https://img.shields.io/badge/deb-package-blue)](releases/learnTerminalTN.deb)
 
 A terminal learning environment designed to help users master Linux commands through guided practice and command translation.
 
