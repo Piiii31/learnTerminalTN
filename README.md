@@ -29,14 +29,14 @@ Learn Terminal TN aims to:
 ### Debian Package
 ```bash
 wget https://github.com/Piiii31/learnTerminalTN/releases/download/v1.0/learnTerminalTN.deb
-sudo dpkg -i learnterminaltn.deb
+sudo dpkg -i learnTerminalTN.deb
 sudo apt install -f # Install dependencies
 ```
 
 ### Manual Installation
 ```bash
 git clone https://github.com/Piiii31/learnTerminalTN.git
-cd learn-terminal-tn
+cd learnTerminalTN
 sudo ./install.sh
 ```
 
