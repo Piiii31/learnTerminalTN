@@ -1,0 +1,1 @@
+A terminal learning environment designed to help users master Linux commands through guided practice and command translation.
